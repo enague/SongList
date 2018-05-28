@@ -16,26 +16,36 @@ var App = function (_React$Component) {
 
 		var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 
-		_this.state = {};
+		_this.state = {
+			songs: _this.props.songs
+		};
+		_this.handleSearch = _this.handleSearch.bind(_this);
 		return _this;
 	}
 
 	_createClass(App, [{
+		key: "handleSearch",
+		value: function handleSearch(value) {
+			for (var i = 0; i < this.props.songs.length; i++) {
+				if (this.props.songs[i].title.toUpperCase() === value.toUpperCase()) {
+					this.setState({
+						songs: [this.props.songs[i]]
+					});
+				}
+			}
+		}
+	}, {
 		key: "render",
 		value: function render() {
 			return React.createElement(
 				"div",
 				null,
-				React.createElement(
-					"h1",
-					null,
-					" hi from App "
-				),
-				React.createElement(SongList, { songs: this.props.songs })
+				React.createElement(Search, { handleSearch: this.handleSearch }),
+				React.createElement(SongList, { songs: this.state.songs })
 			);
 		}
 	}]);
 
 	return App;
 }(React.Component);
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uL2NsaWVudC9BcHAuanN4Il0sIm5hbWVzIjpbIkFwcCIsInByb3BzIiwic3RhdGUiLCJzb25ncyIsIlJlYWN0IiwiQ29tcG9uZW50Il0sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7O0lBQU1BLEc7OztBQUNMLGNBQVlDLEtBQVosRUFBbUI7QUFBQTs7QUFBQSx3R0FDWkEsS0FEWTs7QUFFbEIsUUFBS0MsS0FBTCxHQUFhLEVBQWI7QUFGa0I7QUFJbEI7Ozs7MkJBR1E7QUFDUixVQUNDO0FBQUE7QUFBQTtBQUNDO0FBQUE7QUFBQTtBQUFBO0FBQUEsS0FERDtBQUdDLHdCQUFDLFFBQUQsSUFBVSxPQUFPLEtBQUtELEtBQUwsQ0FBV0UsS0FBNUI7QUFIRCxJQUREO0FBT0E7Ozs7RUFoQmdCQyxNQUFNQyxTIiwiZmlsZSI6IkFwcC5qcyIsInNvdXJjZXNDb250ZW50IjpbImNsYXNzIEFwcCBleHRlbmRzIFJlYWN0LkNvbXBvbmVudCB7XG5cdGNvbnN0cnVjdG9yKHByb3BzKSB7XG5cdFx0c3VwZXIocHJvcHMpO1xuXHRcdHRoaXMuc3RhdGUgPSB7XG5cdFx0fVxuXHR9XG5cblxuXHRyZW5kZXIoKSB7XG5cdFx0cmV0dXJuKFxuXHRcdFx0PGRpdj5cdFxuXHRcdFx0XHQ8aDE+IGhpIGZyb20gQXBwIDwvaDE+XG5cblx0XHRcdFx0PFNvbmdMaXN0IHNvbmdzPXt0aGlzLnByb3BzLnNvbmdzfSAvPlxuXHRcdFx0PC9kaXY+XG5cdFx0KVxuXHR9XG59XG4iXX0=
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uL2NsaWVudC9BcHAuanN4Il0sIm5hbWVzIjpbIkFwcCIsInByb3BzIiwic3RhdGUiLCJzb25ncyIsImhhbmRsZVNlYXJjaCIsImJpbmQiLCJ2YWx1ZSIsImkiLCJsZW5ndGgiLCJ0aXRsZSIsInRvVXBwZXJDYXNlIiwic2V0U3RhdGUiLCJSZWFjdCIsIkNvbXBvbmVudCJdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7OztJQUFNQSxHOzs7QUFDTCxjQUFZQyxLQUFaLEVBQW1CO0FBQUE7O0FBQUEsd0dBQ1pBLEtBRFk7O0FBRWxCLFFBQUtDLEtBQUwsR0FBYTtBQUNaQyxVQUFPLE1BQUtGLEtBQUwsQ0FBV0U7QUFETixHQUFiO0FBR0EsUUFBS0MsWUFBTCxHQUFtQixNQUFLQSxZQUFMLENBQWtCQyxJQUFsQixPQUFuQjtBQUxrQjtBQU1sQjs7OzsrQkFHWUMsSyxFQUFPO0FBQ25CLFFBQUksSUFBSUMsSUFBRyxDQUFYLEVBQWNBLElBQUksS0FBS04sS0FBTCxDQUFXRSxLQUFYLENBQWlCSyxNQUFuQyxFQUEyQ0QsR0FBM0MsRUFBZ0Q7QUFDL0MsUUFBRyxLQUFLTixLQUFMLENBQVdFLEtBQVgsQ0FBaUJJLENBQWpCLEVBQW9CRSxLQUFwQixDQUEwQkMsV0FBMUIsT0FBNENKLE1BQU1JLFdBQU4sRUFBL0MsRUFBb0U7QUFDbkUsVUFBS0MsUUFBTCxDQUFjO0FBQ2JSLGFBQU8sQ0FBQyxLQUFLRixLQUFMLENBQVdFLEtBQVgsQ0FBaUJJLENBQWpCLENBQUQ7QUFETSxNQUFkO0FBR0E7QUFDRDtBQUNEOzs7MkJBR1E7QUFDUixVQUNDO0FBQUE7QUFBQTtBQUNDLHdCQUFDLE1BQUQsSUFBUSxjQUFjLEtBQUtILFlBQTNCLEdBREQ7QUFFQyx3QkFBQyxRQUFELElBQVUsT0FBTyxLQUFLRixLQUFMLENBQVdDLEtBQTVCO0FBRkQsSUFERDtBQU1BOzs7O0VBNUJnQlMsTUFBTUMsUyIsImZpbGUiOiJBcHAuanMiLCJzb3VyY2VzQ29udGVudCI6WyJjbGFzcyBBcHAgZXh0ZW5kcyBSZWFjdC5Db21wb25lbnQge1xuXHRjb25zdHJ1Y3Rvcihwcm9wcykge1xuXHRcdHN1cGVyKHByb3BzKTtcblx0XHR0aGlzLnN0YXRlID0ge1xuXHRcdFx0c29uZ3M6IHRoaXMucHJvcHMuc29uZ3Ncblx0XHR9XG5cdFx0dGhpcy5oYW5kbGVTZWFyY2g9IHRoaXMuaGFuZGxlU2VhcmNoLmJpbmQodGhpcylcblx0fVxuXG5cblx0aGFuZGxlU2VhcmNoKHZhbHVlKSB7XG5cdFx0Zm9yKHZhciBpPSAwOyBpIDwgdGhpcy5wcm9wcy5zb25ncy5sZW5ndGg7IGkrKykge1xuXHRcdFx0aWYodGhpcy5wcm9wcy5zb25nc1tpXS50aXRsZS50b1VwcGVyQ2FzZSgpID09PSB2YWx1ZS50b1VwcGVyQ2FzZSgpKSB7XG5cdFx0XHRcdHRoaXMuc2V0U3RhdGUoe1xuXHRcdFx0XHRcdHNvbmdzOiBbdGhpcy5wcm9wcy5zb25nc1tpXV1cblx0XHRcdFx0fSlcblx0XHRcdH1cblx0XHR9XG5cdH1cblxuXG5cdHJlbmRlcigpIHtcblx0XHRyZXR1cm4oXG5cdFx0XHQ8ZGl2Plx0XG5cdFx0XHRcdDxTZWFyY2ggaGFuZGxlU2VhcmNoPXt0aGlzLmhhbmRsZVNlYXJjaH0vPlxuXHRcdFx0XHQ8U29uZ0xpc3Qgc29uZ3M9e3RoaXMuc3RhdGUuc29uZ3N9IC8+XG5cdFx0XHQ8L2Rpdj5cblx0XHQpXG5cdH1cbn1cbiJdfQ==

@@ -2,6 +2,19 @@ class App extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			songs: this.props.songs
+		}
+		this.handleSearch= this.handleSearch.bind(this)
+	}
+
+
+	handleSearch(value) {
+		for(var i= 0; i < this.props.songs.length; i++) {
+			if(this.props.songs[i].title.toUpperCase() === value.toUpperCase()) {
+				this.setState({
+					songs: [this.props.songs[i]]
+				})
+			}
 		}
 	}
 
@@ -9,9 +22,8 @@ class App extends React.Component {
 	render() {
 		return(
 			<div>	
-				<h1> hi from App </h1>
-
-				<SongList songs={this.props.songs} />
+				<Search handleSearch={this.handleSearch}/>
+				<SongList songs={this.state.songs} />
 			</div>
 		)
 	}

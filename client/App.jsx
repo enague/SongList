@@ -5,6 +5,7 @@ class App extends React.Component {
 			songs: this.props.songs
 		}
 		this.handleSearch= this.handleSearch.bind(this)
+		this.handleAdd= this.handleAdd.bind(this)
 	}
 
 
@@ -18,10 +19,19 @@ class App extends React.Component {
 		}
 	}
 
+	handleAdd(value) {
+		var splitSong= value.split(',')
+		console.log(splitSong)
+		var newSong= {'title': splitSong[1], 'artist': splitSong[0]};
+		this.props.songs.push(newSong)
+		console.log(this.props.songs)
+	}
+
 
 	render() {
 		return(
 			<div>	
+				<Add handleAdd={this.handleAdd} />
 				<Search handleSearch={this.handleSearch}/>
 				<SongList songs={this.state.songs} />
 			</div>

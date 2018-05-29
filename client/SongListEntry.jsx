@@ -2,23 +2,22 @@ class SongListEntry extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			listen: false
+			show: false
 		}
-		this.listen= this.listen.bind(this)
+		this.show= this.show.bind(this)
 	}
 
-	listen() {
+	show() {
 		this.setState(prevState => ({
-			listen: !prevState.listen
+			show: !prevState.show
 		}));
 	}
 
 	render() {
 		return(
 			<div>
-				<div>{this.props.song.artist}:</div>
-				<div>{this.props.song.title}</div>
-				<div onClick={()=>{this.listen()}}> {this.state.listen ? 'To Listen': 'Listened'} </div><br/>
+				<div onClick={()=>{this.show()}}>{this.props.song.title}</div>
+				<div> {this.state.show ? <Info songInfo={this.props} />: null} </div><br />
 			</div>
 		)
 	}

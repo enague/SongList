@@ -10,8 +10,10 @@ class App extends React.Component {
 
 
 	handleSearch(value) {
+		console.log('it hits', value)
 		for(var i= 0; i < this.props.songs.length; i++) {
 			if(this.props.songs[i].title.toUpperCase() === value.toUpperCase()) {
+				console.log('this hits',this.props.songs[i])
 				this.setState({
 					songs: [this.props.songs[i]]
 				})
@@ -21,7 +23,6 @@ class App extends React.Component {
 
 	handleAdd(value) {
 		var splitSong= value.split(',')
-		console.log(splitSong)
 		var newSong= {'title': splitSong[1], 'artist': splitSong[0]};
 		this.props.songs.push(newSong)
 		console.log(this.props.songs)
@@ -34,6 +35,7 @@ class App extends React.Component {
 				<Add handleAdd={this.handleAdd} />
 				<Search handleSearch={this.handleSearch}/>
 				<SongList songs={this.state.songs} />
+				<button onClick={()=> {window.location.reload()}}>Refresh Page</button>
 			</div>
 		)
 	}

@@ -6,11 +6,12 @@ class App extends React.Component {
 		}
 		this.handleSearch= this.handleSearch.bind(this)
 		this.handleAdd= this.handleAdd.bind(this)
+		this.postSongs= this.postSongs.bind(this)
+		this.getSongs= this.getSongs.bind(this)
 	}
 
 
 	handleSearch(value) {
-		console.log('it hits', value)
 		for(var i= 0; i < this.props.songs.length; i++) {
 			if(this.props.songs[i].title.toUpperCase() === value.toUpperCase()) {
 				console.log('this hits',this.props.songs[i])
@@ -19,6 +20,8 @@ class App extends React.Component {
 				})
 			}
 		}
+
+		this.getSongs(value)
 	}
 
 	handleAdd(value) {
@@ -26,6 +29,33 @@ class App extends React.Component {
 		var newSong= {'title': splitSong[1], 'artist': splitSong[0]};
 		this.props.songs.push(newSong)
 		console.log(this.props.songs)
+
+		this.postSongs(value)
+	}
+
+	postSongs(value){
+		axios.post('/songs', {
+			params: {value}
+		})
+		.then((response)=> {
+			console.log(response)
+		})
+		.catch((err) => {
+			console.log(err)
+		})
+
+	}
+
+	getSongs(value) {
+		axios.get('/songs', {
+			params: {value}
+		})
+		.then((response)=> {
+			console.log(response)
+		})
+		.catch((err) => {
+			console.log(err)
+		})
 	}
 
 

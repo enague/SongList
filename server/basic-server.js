@@ -7,12 +7,18 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({'extended': false}));
 app.use(express.static('compiled'));
 
-//TODO:
-	//app.post
-	//app.get
+
+app.post('/songs', (req,res) => {
+	var songTitle= req.body.params.value;
+
+	res.send()
+})
 
 
-
+app.get('/songs', (req,res) => {
+	var songIWant= req.query.value;
+	res.send()
+})
 
 
 
